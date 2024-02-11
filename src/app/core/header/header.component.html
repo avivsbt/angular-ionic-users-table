@@ -1,17 +1,14 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-
     <ion-grid>
       <ion-row>
         <ion-col>
-          <ion-item class="logo">
+          <ion-item (click)="navigateToHome()" class="logo">
             <img alt="Rail" src="assets/logo.png">
           </ion-item>
         </ion-col>
         <ion-col class="logout" size="auto">
-          
-            <ion-icon  name="log-in-outline"></ion-icon>
-          
+          <ion-icon name="log-in-outline"></ion-icon>
         </ion-col>
       </ion-row>
     </ion-grid>
