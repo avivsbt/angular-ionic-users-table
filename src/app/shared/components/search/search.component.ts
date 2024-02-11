@@ -5,10 +5,15 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './search.component.html',
   styleUrls: ['./search.component.scss'],
 })
-export class SearchComponent  implements OnInit {
+export class SearchComponent implements OnInit {
 
   constructor() { }
 
-  ngOnInit() {}
+  ngOnInit() { }
+
+  handleInput(event: Event): void {
+    const query = (event.target as HTMLInputElement).value.toLowerCase();
+    [""].filter((d) => d.toLowerCase().indexOf(query) > -1);
+  }
 
 }

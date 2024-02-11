@@ -6,6 +6,7 @@ import { HomePage } from './pages/home/home.page';
 
 import { HomeRoutingModule } from './home-routing.module';
 import { EditItemPage } from './pages/edit-item/edit-item.page';
+import { CoreModule } from 'src/app/core/core.module';
 
 
 @NgModule({
@@ -13,7 +14,7 @@ import { EditItemPage } from './pages/edit-item/edit-item.page';
     CommonModule,
     FormsModule,
     IonicModule,
-    HomeRoutingModule
+    HomeRoutingModule,
   ],
   declarations: [HomePage, EditItemPage]
 })
