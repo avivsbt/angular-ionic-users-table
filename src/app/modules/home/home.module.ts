@@ -6,7 +6,8 @@ import { HomePage } from './pages/home/home.page';
 
 import { HomeRoutingModule } from './home-routing.module';
 import { EditItemPage } from './pages/edit-item/edit-item.page';
-import { CoreModule } from 'src/app/core/core.module';
+import { SearchComponent } from 'src/app/shared/components/search/search.component';
+import { SpeechComponent } from 'src/app/shared/components/speech/speech.component';
 
 
 @NgModule({
@@ -16,6 +17,6 @@ import { CoreModule } from 'src/app/core/core.module';
     IonicModule,
     HomeRoutingModule,
   ],
-  declarations: [HomePage, EditItemPage]
+  declarations: [HomePage, EditItemPage, SearchComponent, SpeechComponent]
 })
 export class HomeModule { }
