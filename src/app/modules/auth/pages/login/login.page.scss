@@ -1,0 +1,16 @@
+.wrapper-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.wrapper-img {
+    display: flex;
+    justify-content: center;
+
+    img {
+        width: 90%;
+        border-radius: 100%;
+        opacity: 0.2;
+    }
+}

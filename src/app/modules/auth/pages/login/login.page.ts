@@ -1,7 +1,4 @@
 import { Component } from '@angular/core';
-import { AuthService } from '../../services/auth.service';
-import { Router } from '@angular/router';
-
 @Component({
   selector: 'app-login',
   templateUrl: './login.page.html',
@@ -9,10 +6,8 @@ import { Router } from '@angular/router';
 })
 export class LoginPage {
 
-  constructor(private authService: AuthService, private router: Router) { 
-    if(this.authService.isAuthenticated()){
-      this.router.navigate(['/home']);
-    }
+  constructor() {
+
   }
 
 }
