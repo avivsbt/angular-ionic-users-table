@@ -7,7 +7,7 @@
   </ion-row>
 
   <ion-row class="table-border-bottom" *ngFor="let item of records">
-    <app-item class="line" [item]="item"></app-item>
-    <app-expand class="line" [item]="item"></app-expand>
-  </ion-row>  
+    <app-item class="line" [item]="item" [selected]="selected" (selectedItemId)="onSelected($event)"></app-item>
+    <app-expand *ngIf="selected === item.id" class="line" [item]="item"></app-expand>
+  </ion-row>
 </ion-grid>

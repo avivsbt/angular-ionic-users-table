@@ -8,3 +8,11 @@
     width: 100%;
     display: flex;
 }
+
+.chevron {
+    transition: transform 0.3s ease;
+}
+
+.expanded{
+    transform: rotate(-180deg);
+}
