@@ -1,14 +1,23 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-edit-item',
   templateUrl: './edit-item.page.html',
   styleUrls: ['./edit-item.page.scss'],
 })
-export class EditItemPage  implements OnInit {
+export class EditItemPage implements OnInit {
 
-  constructor() { }
+  public formData: FormGroup;
 
-  ngOnInit() {}
+  constructor(private fb: FormBuilder) {
+    this.formData = this.fb.group({
+      name: [''],
+      email: [''],
+      password: [''],
+    });
+  }
+
+  ngOnInit() { }
 
 }

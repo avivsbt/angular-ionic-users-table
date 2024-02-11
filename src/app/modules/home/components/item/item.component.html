@@ -2,8 +2,6 @@
 <ion-col>{{ item?.gender }}</ion-col>
 <ion-col>{{ item?.company }}</ion-col>
 <ion-col class="ion-justify-content-around flex" size="2">
-  <ion-icon name="create-outline"></ion-icon>
-  <ion-icon name="chevron-down-outline"></ion-icon>
+  <ion-icon class="pointer" (click)="navigateToEdit()" name="create-outline"></ion-icon>
+  <ion-icon class="pointer" name="chevron-down-outline"></ion-icon>
 </ion-col>
-
-

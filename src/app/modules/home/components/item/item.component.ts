@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-item',
@@ -9,8 +10,13 @@ export class ItemComponent  implements OnInit {
 
   @Input() item: any;
 
-  constructor() { }
+  constructor(private router: Router){}
+
 
   ngOnInit() {}
+
+  navigateToEdit(){
+    this.router.navigate(['/edit', this.item.id])
+  }
 
 }

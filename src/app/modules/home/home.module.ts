@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { IonicModule } from '@ionic/angular';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HomePage } from './pages/home/home.page';
 
 import { HomeRoutingModule } from './home-routing.module';
@@ -17,6 +17,7 @@ import { ExpandComponent } from './components/expand/expand.component';
     FormsModule,
     IonicModule,
     HomeRoutingModule,
+    ReactiveFormsModule   
   ],
   declarations: [
     HomePage,

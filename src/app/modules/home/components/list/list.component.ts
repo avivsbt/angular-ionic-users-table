@@ -8,10 +8,10 @@ import { Component, OnInit } from '@angular/core';
 export class ListComponent  implements OnInit {
 
   public records:any = [
-    {name: "aviv", company: "test", gender:"meal"},
-    {name: "aviv", company: "test", gender:"meal"},
-    {name: "aviv", company: "test", gender:"meal"},
-    {name: "aviv", company: "test", gender:"meal"},
+    {id: "1", name: "aviv", company: "test", gender:"meal"},
+    {id: "2", name: "aviv", company: "test", gender:"meal"},
+    {id: "3", name: "aviv", company: "test", gender:"meal"},
+    {id: "4", name: "aviv", company: "test", gender:"meal"},
   ]
   constructor() { }
 
