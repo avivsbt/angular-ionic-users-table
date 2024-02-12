@@ -19,6 +19,11 @@ export class ItemComponent {
   }
 
   public onSelected(id: string): void {
+    if(this.item.id === this.selected) {
+      this.selectedItemId.emit("");
+      return;
+    }
+    
     this.selectedItemId.emit(id);
   }
 
