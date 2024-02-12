@@ -17,7 +17,7 @@ export class ListComponent implements OnInit, OnDestroy {
   constructor(private homeService: HomeService) { }
 
   ngOnInit(): void {
-    this.usersSubscription = this.homeService.users$.subscribe(res => {
+    this.usersSubscription = this.homeService.getAllUsers().subscribe(res => {
       this.users = [...res.values()];
     });
   }

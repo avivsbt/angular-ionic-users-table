@@ -1,18 +1,15 @@
 <ion-content class="ion-padding" [fullscreen]="true">
 
-    <form class="wrapper-form" [formGroup]="formData">
+  <form class="wrapper-form" [formGroup]="formData">
 
-      <ion-input color="dark" label="User Name" formControlName="name" label-placement="floating"
-        fill="solid"></ion-input>
+    <ion-input color="dark" label="First name" formControlName="firstName" label-placement="floating" fill="solid"></ion-input>
+    <ion-input color="dark" label="Last name" formControlName="lastName" label-placement="floating" fill="solid"></ion-input>
+    <ion-input color="dark" label="Age" formControlName="age" label-placement="floating" fill="solid"></ion-input>
+    <ion-input color="dark" label="Phone" formControlName="phone" label-placement="floating" fill="solid"></ion-input>
+    <ion-input color="dark" label="Gender" formControlName="gender" label-placement="floating" fill="solid"></ion-input>
+    <ion-input color="dark" label="Email" formControlName="email" label-placement="floating" fill="solid"></ion-input>
+    <ion-button (click)="onSubmit()" class="ion-margin" color="success" shape="round">Submit</ion-button>
 
-      <ion-input color="dark" label="User email" formControlName="email" label-placement="floating"
-        fill="solid"></ion-input>
-
-      <ion-input color="dark" label="User password" formControlName="password" label-placement="floating"
-        fill="solid"></ion-input>
-
-      <ion-button class="ion-margin" color="success" shape="round">Submit</ion-button>
-
-    </form>
+  </form>
 
 </ion-content>
