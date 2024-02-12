@@ -5,12 +5,12 @@ import { Component, OnInit, Input } from '@angular/core';
   templateUrl: './expand.component.html',
   styleUrls: ['./expand.component.scss'],
 })
-export class ExpandComponent  implements OnInit {
+export class ExpandComponent implements OnInit {
 
   @Input() item: any;
 
   constructor() { }
 
-  ngOnInit() {}
+  ngOnInit() { }
 
 }

@@ -1,13 +1,17 @@
 <ion-grid>
   <ion-row class="table-border-bottom light">
-    <ion-col class="ion-text-bold"> Name </ion-col>
-    <ion-col class="ion-text-bold"> Gender </ion-col>
-    <ion-col class="ion-text-bold"> Company </ion-col>
+    <ion-col class="ion-text-bold"> First name </ion-col>
+    <ion-col class="ion-text-bold"> Last name </ion-col>
+    <ion-col class="ion-text-bold"> Age </ion-col>
     <ion-col size="2"> </ion-col>
   </ion-row>
 
-  <ion-row class="table-border-bottom" *ngFor="let item of records">
+
+  <ion-row class="table-border-bottom" *ngFor="let item of users">
+    
     <app-item class="line" [item]="item" [selected]="selected" (selectedItemId)="onSelected($event)"></app-item>
-    <app-expand *ngIf="selected === item.id" class="line" [item]="item"></app-expand>
+    <app-expand *ngIf="selected === item.login.uuid" class="line" [item]="item"></app-expand>
   </ion-row>
+
+
 </ion-grid>

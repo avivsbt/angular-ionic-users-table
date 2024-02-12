@@ -1,14 +1,11 @@
 <ion-col size="12">
   <ion-row class="light">
-    <ion-col class="ion-text-bold"> T1 </ion-col>
-    <ion-col class="ion-text-bold"> T2 </ion-col>
-    <ion-col class="ion-text-bold"> T3 </ion-col>
-    <ion-col size="2"> </ion-col>
+    <ion-col class="ion-no-padding size-14"> Phone: {{ item.phone }} </ion-col>
   </ion-row>
-  <ion-row>
-    <ion-col>{{ item?.name }}</ion-col>
-    <ion-col>{{ item?.gender }}</ion-col>
-    <ion-col>{{ item?.company }}</ion-col>
-    <ion-col size="2"></ion-col>
+  <ion-row class="light">
+    <ion-col class="ion-no-padding size-14"> Gender: {{ item.gender }} </ion-col>
+  </ion-row>
+  <ion-row class="light">
+    <ion-col class="ion-no-padding size-14"> Email: {{ item.email }} </ion-col>
   </ion-row>
 </ion-col>

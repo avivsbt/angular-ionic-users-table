@@ -15,11 +15,11 @@ export class ItemComponent {
   constructor(private router: Router) { }
 
   public navigateToEdit(): void {
-    this.router.navigate(['/edit', this.item.id])
+    this.router.navigate(['/edit', this.item.login.uuid])
   }
 
   public onSelected(id: string): void {
-    if(this.item.id === this.selected) {
+    if(this.item.login.uuid === this.selected) {
       this.selectedItemId.emit("");
       return;
     }

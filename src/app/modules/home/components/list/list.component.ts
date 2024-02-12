@@ -1,24 +1,34 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { HomeService } from '../../services/home.service';
+import { IUser } from '../../models/users';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-list',
   templateUrl: './list.component.html',
   styleUrls: ['./list.component.scss'],
 })
-export class ListComponent {
+export class ListComponent implements OnInit, OnDestroy {
 
-  public records: any = [
-    { id: "1", name: "aviv", company: "test", gender: "meal" },
-    { id: "2", name: "aviv", company: "test", gender: "meal" },
-    { id: "3", name: "aviv", company: "test", gender: "meal" },
-    { id: "4", name: "aviv", company: "test", gender: "meal" },
-  ];
-
+  private usersSubscription: Subscription = Subscription.EMPTY;
+  public users: IUser[] = [];
   public selected: string = "";
 
-  constructor() { }
+  constructor(private homeService: HomeService) {
+    this.homeService.loadUsers();
+  }
 
-  public onSelected(id: string): void {    
+  ngOnInit(): void {
+    this.usersSubscription = this.homeService.users$.subscribe(res => {
+      this.users = [...res.values()];
+    });
+  }
+
+  ngOnDestroy(): void {
+    this.usersSubscription.unsubscribe();
+  }
+
+  public onSelected(id: string): void {
     this.selected = id;
   }
 
