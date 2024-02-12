@@ -1,5 +1,6 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { Router } from '@angular/router';
+import { IUser } from '../../models/users';
 
 @Component({
   selector: 'app-item',
@@ -8,7 +9,7 @@ import { Router } from '@angular/router';
 })
 export class ItemComponent {
 
-  @Input() item: any;
+  @Input() item: IUser = {} as IUser;
   @Input() selected: string = "";
   @Output() selectedItemId = new EventEmitter<string>();
 
@@ -19,11 +20,11 @@ export class ItemComponent {
   }
 
   public onSelected(id: string): void {
-    if(this.item.login.uuid === this.selected) {
+    if (this.item.login.uuid === this.selected) {
       this.selectedItemId.emit("");
       return;
     }
-    
+
     this.selectedItemId.emit(id);
   }
 

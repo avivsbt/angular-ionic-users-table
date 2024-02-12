@@ -6,12 +6,8 @@
     <ion-col size="2"> </ion-col>
   </ion-row>
 
-
-  <ion-row class="table-border-bottom" *ngFor="let item of users">
-    
+  <ion-row class="table-border-bottom" *ngFor="let item of onFilerUsers()">
     <app-item class="line" [item]="item" [selected]="selected" (selectedItemId)="onSelected($event)"></app-item>
     <app-expand *ngIf="selected === item.login.uuid" class="line" [item]="item"></app-expand>
   </ion-row>
-
-
 </ion-grid>

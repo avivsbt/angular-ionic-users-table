@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, Input } from '@angular/core';
 import { HomeService } from '../../services/home.service';
 import { IUser } from '../../models/users';
 import { Subscription } from 'rxjs';
@@ -10,6 +10,7 @@ import { Subscription } from 'rxjs';
 })
 export class ListComponent implements OnInit, OnDestroy {
 
+  @Input() query: string = "";
   private usersSubscription: Subscription = Subscription.EMPTY;
   public users: IUser[] = [];
   public selected: string = "";
@@ -28,6 +29,10 @@ export class ListComponent implements OnInit, OnDestroy {
 
   public onSelected(id: string): void {
     this.selected = id;
+  }
+
+  public onFilerUsers(): IUser[] {
+    return this.users.filter((user) => user.email.toLowerCase().indexOf(this.query) > -1);
   }
 
 }
