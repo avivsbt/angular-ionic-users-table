@@ -13,7 +13,9 @@ export class AuthService {
   }
 
   public onLogOut(): void {
-    sessionStorage.setItem('IsLoggedIn', 'false');
+    sessionStorage.removeItem('IsLoggedIn');
+    localStorage.removeItem("users");
+    window.location.reload();
   }
 
 }

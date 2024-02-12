@@ -14,9 +14,7 @@ export class ListComponent implements OnInit, OnDestroy {
   public users: IUser[] = [];
   public selected: string = "";
 
-  constructor(private homeService: HomeService) {
-    this.homeService.loadUsers();
-  }
+  constructor(private homeService: HomeService) { }
 
   ngOnInit(): void {
     this.usersSubscription = this.homeService.users$.subscribe(res => {
