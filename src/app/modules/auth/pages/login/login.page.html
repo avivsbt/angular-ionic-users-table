@@ -4,9 +4,9 @@
 
   <form class="wrapper-form ion-margin">
     <ion-input color="dark" label="User Name" formControlName="username" label-placement="floating"
-      fill="solid"></ion-input>
+      fill="solid" #input></ion-input>
 
-    <ion-button class="ion-margin" color="success" shape="round">Login</ion-button>
+    <ion-button (click)="onLogin()" class="ion-margin" color="success" shape="round">Login</ion-button>
   </form>
 
   <div class="wrapper-img">

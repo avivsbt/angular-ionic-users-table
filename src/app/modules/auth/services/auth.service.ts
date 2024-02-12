@@ -8,6 +8,12 @@ export class AuthService {
   constructor() { }
 
   public isAuthenticated(): boolean {
-    return true
+    const IsLoggedIn: boolean = JSON.parse(sessionStorage.getItem('IsLoggedIn') ?? "false");
+    return IsLoggedIn
   }
+
+  public onLogOut(): void {
+    sessionStorage.setItem('IsLoggedIn', 'false');
+  }
+
 }
