@@ -1,4 +1,5 @@
 <ion-grid>
+  @if(onFilerUsers().length){
   <ion-row class="table-border-bottom light">
     <ion-col class="ion-text-bold"> First name </ion-col>
     <ion-col class="ion-text-bold"> Last name </ion-col>
@@ -10,4 +11,13 @@
     <app-item class="line" [item]="item" [selected]="selected" (selectedItemId)="onSelected($event)"></app-item>
     <app-expand *ngIf="selected === item.login.uuid" class="line" [item]="item"></app-expand>
   </ion-row>
+  }
+  @else {
+  <ion-row>
+    <ion-col>
+      <ion-text>Data not found</ion-text>
+    </ion-col>
+  </ion-row>
+  }
+
 </ion-grid>
