@@ -18,7 +18,9 @@ export class SpeechComponent {
     this.speechRecognition.hasPermission()
       .then((hasPermission: boolean) => {
         if (!hasPermission) {
-          this.speechRecognition.requestPermission();
+          this.speechRecognition.requestPermission().then(res => {
+            this.startListening();
+          });
         }
       });
   }
