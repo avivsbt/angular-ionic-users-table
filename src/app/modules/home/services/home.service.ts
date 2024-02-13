@@ -28,25 +28,19 @@ export class HomeService {
 
   public async loadUsers(): Promise<void> {
     try {
-
       const usersLocalStorage = await localStorage.getItem('users');
-
-      if (usersLocalStorage) {
-
-        const users: Map<string, IUser> = new Map(JSON.parse(usersLocalStorage));
-
-        users.forEach((value, key) => this._users.set(key, value));
-
-        this.users$.next(users);
-
-        return;
-      }
-
-      this.getUsersApi();
-
+      usersLocalStorage ? this.getUsersLocalStorage(usersLocalStorage) : this.getUsersApi();
     } catch (error) {
       console.error('Error fetching data:', error);
     }
+  }
+
+  private getUsersLocalStorage(usersLocalStorage: string): void {
+    const users: Map<string, IUser> = new Map(JSON.parse(usersLocalStorage));
+
+    users.forEach((value, key) => this._users.set(key, value));
+
+    this.users$.next(users);
   }
 
   private getUsersApi(): void {

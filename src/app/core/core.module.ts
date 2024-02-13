@@ -4,8 +4,6 @@ import { HeaderComponent } from './header/header.component';
 import { IonicModule } from '@ionic/angular';
 import { FooterComponent } from './footer/footer.component';
 
-
-
 @NgModule({
   declarations: [HeaderComponent, FooterComponent],
   imports: [

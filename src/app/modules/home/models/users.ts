@@ -34,7 +34,6 @@ export interface IUserRegistered {
 export interface IUserLogin {
     uuid: string;
 }
-
 export interface IUsersResponseDto {
     results: IUser[];
 }

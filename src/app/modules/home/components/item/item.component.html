@@ -1,12 +1,12 @@
-<ion-col>{{ item.name.first }}</ion-col>
-<ion-col>{{ item.name.last }}</ion-col>
-<ion-col>{{ item.registered.age }}</ion-col>
+<ion-col class="pointer truncate" (click)="onSelected(item.login.uuid)">{{ item.name.first }}</ion-col>
+<ion-col class="pointer truncate" (click)="onSelected(item.login.uuid)">{{ item.name.last }}</ion-col>
+<ion-col class="pointer truncate" (click)="onSelected(item.login.uuid)">{{ item.registered.age }}</ion-col>
 
 <ion-col class="ion-justify-content-around flex" size="2">
 
   <ion-icon class="pointer" (click)="navigateToEdit()" name="create-outline"></ion-icon>
 
-  <ion-icon class="pointer chevron" [ngClass]="{'expanded': selected === item.login.uuid}" (click)="onSelected(item.login.uuid)"
-    name="chevron-down-outline"></ion-icon>
-    
+  <ion-icon class="pointer chevron" [ngClass]="{'expanded': selected === item.login.uuid}"
+    (click)="onSelected(item.login.uuid)" name="chevron-down-outline"></ion-icon>
+
 </ion-col>

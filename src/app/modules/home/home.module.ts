@@ -11,7 +11,6 @@ import { SpeechComponent } from 'src/app/shared/components/speech/speech.compone
 import { ListComponent } from './components/list/list.component';
 import { ItemComponent } from './components/item/item.component';
 import { ExpandComponent } from './components/expand/expand.component';
-import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   imports: [

@@ -1,10 +1,12 @@
 .flex {
     display: flex;
 }
+
 .pointer {
     cursor: pointer;
 }
-.line{
+
+.line {
     width: 100%;
     display: flex;
 }
@@ -13,6 +15,13 @@
     transition: transform 0.3s ease;
 }
 
-.expanded{
+.expanded {
     transform: rotate(-180deg);
+}
+
+.truncate {
+    width: 200px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }

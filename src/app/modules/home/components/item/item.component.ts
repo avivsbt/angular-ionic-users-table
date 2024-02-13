@@ -24,7 +24,6 @@ export class ItemComponent {
       this.selectedItemId.emit("");
       return;
     }
-
     this.selectedItemId.emit(id);
   }
 
