@@ -32,7 +32,7 @@ export class ListComponent implements OnInit, OnDestroy {
   }
 
   public onFilerUsers(): IUser[] {
-    return this.users.filter((user) => user.email.toLowerCase().indexOf(this.query) > -1);
+    return this.users.filter((user) => user.name.first.toLowerCase().indexOf(this.query) > -1);
   }
 
 }
