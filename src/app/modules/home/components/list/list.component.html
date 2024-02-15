@@ -1,5 +1,5 @@
 <ion-grid>
-  @if(onFilerUsers().length){
+  @if(onFilerUsers()?.length){
   <ion-row class="table-border-bottom light">
     <ion-col class="ion-text-bold"> First name </ion-col>
     <ion-col class="ion-text-bold"> Last name </ion-col>
@@ -13,11 +13,17 @@
   </ion-row>
   }
   @else {
-  <ion-row>
-    <ion-col>
-      <ion-text>Data not found</ion-text>
-    </ion-col>
-  </ion-row>
+    @if(!onFilerUsers()) {
+    <div class="ion-text-center">
+      <ion-spinner></ion-spinner>
+    </div>
+    }@else {
+    <ion-row>
+      <ion-col>
+        <ion-text>Data not found</ion-text>
+      </ion-col>
+    </ion-row>
+    }
   }
 
 </ion-grid>

@@ -12,7 +12,7 @@ export class ListComponent implements OnInit, OnDestroy {
 
   @Input() query: string = "";
   private usersSubscription: Subscription = Subscription.EMPTY;
-  public users: IUser[] = [];
+  public users: IUser[] | null = null;
   public selected: string = "";
 
   constructor(private homeService: HomeService) { }
@@ -31,8 +31,8 @@ export class ListComponent implements OnInit, OnDestroy {
     this.selected = id;
   }
 
-  public onFilerUsers(): IUser[] {
-    return this.users.filter((user) => user.name.first.toLowerCase().indexOf(this.query) > -1);
+  public onFilerUsers(): IUser[] | null {
+    return this.users?.filter((user) => user.name.first.toLowerCase().indexOf(this.query) > -1) || null;
   }
 
 }
