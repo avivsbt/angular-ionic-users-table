@@ -6,12 +6,12 @@ import { LoginGuard } from './core/guards/login.guard';
 const routes: Routes = [
   {
     path: '',
-    loadChildren: () => import('./modules/home/home.module').then( m => m.HomeModule),
+    loadChildren: () => import('./modules/home/home.routes').then(r => r.HomeRoutes),
     canActivate: [AuthGuard]
   },
   {
     path: 'login',
-    loadChildren: () => import('./modules/auth/auth.module').then( m => m.AuthModule),
+    loadChildren: () => import('./modules/auth/auth.routes').then((r) => r.AuthRoutes),
     canActivate: [LoginGuard],
   },
   {

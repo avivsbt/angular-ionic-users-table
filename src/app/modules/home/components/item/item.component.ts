@@ -1,11 +1,15 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { Router } from '@angular/router';
 import { IUser } from '../../models/users';
+import { NgClass } from '@angular/common';
+import { IonicModule } from '@ionic/angular';
 
 @Component({
-  selector: 'app-item',
-  templateUrl: './item.component.html',
-  styleUrls: ['./item.component.scss'],
+    selector: 'app-item',
+    templateUrl: './item.component.html',
+    styleUrls: ['./item.component.scss'],
+    standalone: true,
+    imports: [IonicModule, NgClass],
 })
 export class ItemComponent {
 

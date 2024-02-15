@@ -1,14 +1,21 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { IUser } from '../../models/users';
 import { HomeService } from '../../services/home.service';
+import { IonicModule } from '@ionic/angular';
 
 @Component({
-  selector: 'app-edit-item',
-  templateUrl: './edit-item.page.html',
-  styleUrls: ['./edit-item.page.scss'],
+    selector: 'app-edit-item',
+    templateUrl: './edit-item.page.html',
+    styleUrls: ['./edit-item.page.scss'],
+    standalone: true,
+    imports: [
+        IonicModule,
+        FormsModule,
+        ReactiveFormsModule,
+    ],
 })
 export class EditItemPage implements OnInit, OnDestroy {
 

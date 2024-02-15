@@ -1,10 +1,13 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
-import { IonInput, ToastController } from '@ionic/angular';
+import { IonInput, ToastController, IonicModule } from '@ionic/angular';
+import { FrequencyComponent } from '../../../../shared/components/frequency/frequency.component';
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.page.html',
-  styleUrls: ['./login.page.scss'],
+    selector: 'app-login',
+    templateUrl: './login.page.html',
+    styleUrls: ['./login.page.scss'],
+    standalone: true,
+    imports: [IonicModule, FrequencyComponent],
 })
 export class LoginPage {
 

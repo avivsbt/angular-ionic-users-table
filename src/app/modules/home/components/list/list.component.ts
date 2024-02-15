@@ -2,11 +2,23 @@ import { Component, OnInit, OnDestroy, Input } from '@angular/core';
 import { HomeService } from '../../services/home.service';
 import { IUser } from '../../models/users';
 import { Subscription } from 'rxjs';
+import { ExpandComponent } from '../expand/expand.component';
+import { ItemComponent } from '../item/item.component';
+import { NgFor, NgIf } from '@angular/common';
+import { IonicModule } from '@ionic/angular';
 
 @Component({
-  selector: 'app-list',
-  templateUrl: './list.component.html',
-  styleUrls: ['./list.component.scss'],
+    selector: 'app-list',
+    templateUrl: './list.component.html',
+    styleUrls: ['./list.component.scss'],
+    standalone: true,
+    imports: [
+        IonicModule,
+        NgFor,
+        ItemComponent,
+        NgIf,
+        ExpandComponent,
+    ],
 })
 export class ListComponent implements OnInit, OnDestroy {
 

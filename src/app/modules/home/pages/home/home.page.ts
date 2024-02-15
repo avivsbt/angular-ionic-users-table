@@ -1,10 +1,21 @@
 import { Component } from '@angular/core';
 import { HomeService } from '../../services/home.service';
+import { ListComponent } from '../../components/list/list.component';
+import { SearchComponent } from '../../../../shared/components/search/search.component';
+import { SpeechComponent } from '../../../../shared/components/speech/speech.component';
+import { IonicModule } from '@ionic/angular';
 
 @Component({
-  selector: 'app-home',
-  templateUrl: 'home.page.html',
-  styleUrls: ['home.page.scss'],
+    selector: 'app-home',
+    templateUrl: 'home.page.html',
+    styleUrls: ['home.page.scss'],
+    standalone: true,
+    imports: [
+        IonicModule,
+        SpeechComponent,
+        SearchComponent,
+        ListComponent,
+    ],
 })
 export class HomePage {
 

@@ -1,12 +1,25 @@
-import { enableProdMode } from '@angular/core';
+import { enableProdMode, importProvidersFrom } from '@angular/core';
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 
-import { AppModule } from './app/app.module';
+
 import { environment } from './environments/environment';
+import { AppComponent } from './app/app.component';
+import { withInterceptorsFromDi, provideHttpClient } from '@angular/common/http';
+import { AppRoutingModule } from './app/app-routing.module';
+import { BrowserModule, bootstrapApplication } from '@angular/platform-browser';
+import { IonicRouteStrategy, IonicModule } from '@ionic/angular';
+import { RouteReuseStrategy } from '@angular/router';
+import { SpeechRecognition } from '@ionic-native/speech-recognition/ngx';
 
 if (environment.production) {
   enableProdMode();
 }
 
-platformBrowserDynamic().bootstrapModule(AppModule)
+bootstrapApplication(AppComponent, {
+    providers: [
+        importProvidersFrom(BrowserModule, IonicModule.forRoot(), AppRoutingModule),
+        SpeechRecognition, { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
+        provideHttpClient(withInterceptorsFromDi()),
+    ]
+})
   .catch(err => console.log(err));

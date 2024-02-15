@@ -1,10 +1,13 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 import { SpeechRecognition } from '@ionic-native/speech-recognition/ngx';
+import { IonicModule } from '@ionic/angular';
 
 @Component({
-  selector: 'app-speech',
-  templateUrl: './speech.component.html',
-  styleUrls: ['./speech.component.scss'],
+    selector: 'app-speech',
+    templateUrl: './speech.component.html',
+    styleUrls: ['./speech.component.scss'],
+    standalone: true,
+    imports: [IonicModule],
 })
 export class SpeechComponent {
 
