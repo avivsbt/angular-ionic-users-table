@@ -23,7 +23,7 @@ export class HomeService {
 
   public setUser(key: string, value: IUser): void {
     this._users.set(key, value);
-    localStorage.setItem('users', JSON.stringify(Array.from(this._users.entries())));
+    this.setUsersLocalStorage(this._users)
   }
 
   public async loadUsers(): Promise<void> {
@@ -52,10 +52,14 @@ export class HomeService {
 
       this.users$.next(this._users);
 
-      localStorage.setItem('users', JSON.stringify(Array.from(this._users.entries())));
+      this.setUsersLocalStorage(this._users)
 
     }, (error) => {
       console.error('Error fetching data:', error);
     });
+  }
+
+  private setUsersLocalStorage(users: Map<string, IUser>): void {
+    localStorage.setItem('users', JSON.stringify(Array.from(users.entries())));
   }
 }
