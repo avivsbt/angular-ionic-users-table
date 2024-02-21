@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter, input } from '@angular/core';
+import { Component, input, signal } from '@angular/core';
 import { Router } from '@angular/router';
 import { IUser } from '../../models/users';
 import { NgClass } from '@angular/common';
@@ -14,9 +14,7 @@ import { IonicModule } from '@ionic/angular';
 export class ItemComponent {
 
   public user = input<IUser>({} as IUser);
-  public selected = input<string>("");
-
-  @Output() selectedItemId = new EventEmitter<string>();
+  public selected = signal<string>("");
 
   constructor(private router: Router) { }
 
@@ -25,7 +23,6 @@ export class ItemComponent {
   }
 
   public onSelected(id: string): void {
-    this.user().login.uuid === this.selected() ? this.selectedItemId.emit("") : this.selectedItemId.emit(id);
+    this.user().login.uuid === this.selected() ? this.selected.set("") : this.selected.set(id);
   }
-
 }

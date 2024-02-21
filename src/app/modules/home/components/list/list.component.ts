@@ -24,7 +24,6 @@ export class ListComponent implements OnInit, OnDestroy {
 
   public query = input<string>("");
   public users = signal<null | IUser[]>(null);
-  public selected = signal<string>("");
 
   public filteredUsers = computed(() =>
     this.users()?.filter((user) => user.name.first.toLowerCase().indexOf(this.query()) > -1) || null

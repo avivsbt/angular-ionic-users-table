@@ -6,14 +6,12 @@
     <ion-col class="ion-text-bold"> Age </ion-col>
     <ion-col size="2"> </ion-col>
   </ion-row>
-
   <ion-row class="table-border-bottom">
     @for (user of filteredUsers(); track user.login.uuid) {
-    <app-item class="line" [user]="user" [selected]="selected()" (selectedItemId)="selected.set($event)"></app-item>
-    <app-expand *ngIf="selected() === user.login.uuid" class="line" [user]="user"></app-expand>
+    <app-item #item class="line" [user]="user"></app-item>
+    <app-expand *ngIf="item.selected() === user.login.uuid" class="line" [user]="user"></app-expand>
     }
   </ion-row>
-
   }
   @else {
   @if(!filteredUsers()) {
@@ -28,5 +26,4 @@
   </ion-row>
   }
   }
-
 </ion-grid>
