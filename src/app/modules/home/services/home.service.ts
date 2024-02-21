@@ -44,11 +44,9 @@ export class HomeService {
   }
 
   private getUsersApi(): void {
-    this.http.get("https://randomuser.me/api/?page=1&results=10").subscribe(response => {
+    this.http.get<IUsersResponseDto>("https://randomuser.me/api/?page=1&results=10").subscribe(({ results }) => {
 
-      const usersResponse = response as IUsersResponseDto;
-
-      usersResponse.results.forEach(obj => this._users.set(obj.login.uuid, obj));
+      results.forEach(obj => this._users.set(obj.login.uuid, obj));
 
       this.users$.next(this._users);
 
