@@ -7,14 +7,14 @@
           <app-speech (search)="onSearch($event)"></app-speech>
         </ion-col>
         <ion-col size="11" pull="1">
-          <app-search (search)="onSearch($event)" searchValue="{{query}}"></app-search>
+          <app-search (search)="onSearch($event)" searchValue="{{query()}}"></app-search>
         </ion-col>
       </ion-row>
     </ion-grid>
 
     <ion-row>
       <ion-col class="ion-padding">
-        <app-list [query]="query"></app-list>
+        <app-list [query]="query()"></app-list>
       </ion-col>
     </ion-row>
 

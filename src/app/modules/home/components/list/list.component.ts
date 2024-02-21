@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy, Input } from '@angular/core';
+import { Component, OnInit, OnDestroy, signal, computed, input } from '@angular/core';
 import { HomeService } from '../../services/home.service';
 import { IUser } from '../../models/users';
 import { Subscription } from 'rxjs';
@@ -8,43 +8,40 @@ import { NgFor, NgIf } from '@angular/common';
 import { IonicModule } from '@ionic/angular';
 
 @Component({
-    selector: 'app-list',
-    templateUrl: './list.component.html',
-    styleUrls: ['./list.component.scss'],
-    standalone: true,
-    imports: [
-        IonicModule,
-        NgFor,
-        ItemComponent,
-        NgIf,
-        ExpandComponent,
-    ],
+  selector: 'app-list',
+  templateUrl: './list.component.html',
+  styleUrls: ['./list.component.scss'],
+  standalone: true,
+  imports: [
+    IonicModule,
+    NgFor,
+    ItemComponent,
+    NgIf,
+    ExpandComponent,
+  ],
 })
 export class ListComponent implements OnInit, OnDestroy {
 
-  @Input() query: string = "";
+  public query = input<string>("");
+  public users = signal<null | IUser[]>(null);
+  public selected = signal<string>("");
+
+  public filteredUsers = computed(() =>
+    this.users()?.filter((user) => user.name.first.toLowerCase().indexOf(this.query()) > -1) || null
+  );
+
   private usersSubscription: Subscription = Subscription.EMPTY;
-  public users: IUser[] | null = null;
-  public selected: string = "";
 
   constructor(private homeService: HomeService) { }
 
   ngOnInit(): void {
     this.usersSubscription = this.homeService.getAllUsers().subscribe(res => {
-      this.users = [...res.values()];
+      this.users.set([...res.values()]);
     });
   }
 
   ngOnDestroy(): void {
     this.usersSubscription.unsubscribe();
-  }
-
-  public onSelected(id: string): void {
-    this.selected = id;
-  }
-
-  public onFilerUsers(): IUser[] | null {
-    return this.users?.filter((user) => user.name.first.toLowerCase().indexOf(this.query) > -1) || null;
   }
 
 }

@@ -2,15 +2,17 @@
 
   <app-frequency></app-frequency>
 
-  <form class="wrapper-form ion-margin">
-    <ion-input color="dark" label="User Name" formControlName="username" label-placement="floating"
-      fill="solid" #input></ion-input>
+  <form (ngSubmit)="onLogin()" class="wrapper-form ion-margin">
 
-    <ion-button (click)="onLogin()" class="ion-margin" color="success" shape="round">Login</ion-button>
+    <ion-input color="dark" label="User Name" label-placement="floating" fill="solid" type="text" name="userName"
+      [(ngModel)]="formValue().userName" ngDefaultControl />
+
+    <ion-button type="submit" class="ion-margin" color="success" shape="round" ngDefaultControl>Login</ion-button>
+
   </form>
 
   <div class="wrapper-img">
     <img alt="login" src="assets/icon-login.jpeg">
   </div>
-  
+
 </ion-content>

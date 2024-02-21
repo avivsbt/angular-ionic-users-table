@@ -1,17 +1,24 @@
-import { Component, ElementRef, ViewChild } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { Router } from '@angular/router';
-import { IonInput, ToastController, IonicModule } from '@ionic/angular';
+import { ToastController, IonicModule } from '@ionic/angular';
 import { FrequencyComponent } from '../../../../shared/components/frequency/frequency.component';
+import { FormsModule } from '@angular/forms';
+import { FormDirective } from 'src/app/shared/directives/form.directive';
 @Component({
-    selector: 'app-login',
-    templateUrl: './login.page.html',
-    styleUrls: ['./login.page.scss'],
-    standalone: true,
-    imports: [IonicModule, FrequencyComponent],
+  selector: 'app-login',
+  templateUrl: './login.page.html',
+  styleUrls: ['./login.page.scss'],
+  standalone: true,
+  imports: [
+    IonicModule,
+    FrequencyComponent,
+    FormsModule,
+    FormDirective
+  ],
 })
 export class LoginPage {
 
-  @ViewChild('input') input: IonInput = {} as IonInput;
+  public formValue = signal({ userName: "" });
 
   constructor(
     private toastController: ToastController,
@@ -19,9 +26,9 @@ export class LoginPage {
   ) { }
 
   public onLogin(): void {
-    if (this.input.value === "1") {
+    if (this.formValue().userName === "1") {
       sessionStorage.setItem("IsLoggedIn", "true");
-      this.input.value = "";
+      this.formValue.set({ userName: "" });
       this.router.navigate(['/home']);
       return;
     }

@@ -1,67 +1,53 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
-import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { Component, OnInit, OnDestroy, signal } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { IUser } from '../../models/users';
 import { HomeService } from '../../services/home.service';
+import { FormDirective } from 'src/app/shared/directives/form.directive';
 import { IonicModule } from '@ionic/angular';
 
 @Component({
-    selector: 'app-edit-item',
-    templateUrl: './edit-item.page.html',
-    styleUrls: ['./edit-item.page.scss'],
-    standalone: true,
-    imports: [
-        IonicModule,
-        FormsModule,
-        ReactiveFormsModule,
-    ],
+  selector: 'app-edit-item',
+  templateUrl: './edit-item.page.html',
+  styleUrls: ['./edit-item.page.scss'],
+  standalone: true,
+  imports: [
+    FormsModule,
+    FormDirective,
+    IonicModule
+  ],
 })
 export class EditItemPage implements OnInit, OnDestroy {
 
-  public formData: FormGroup;
-  public user: IUser = {} as IUser;
-  private id: string = "";
+  public formValue = signal<IUser>({
+    name: {
+      first: "",
+      last: ""
+    },
+    email: "",
+    phone: "",
+    gender: "",
+    registered: {
+      age: 0
+    }
+  } as IUser);
+
+  private id = signal<string>("");
   private routeSub: Subscription = Subscription.EMPTY;
   private userSubscription: Subscription = Subscription.EMPTY;
 
   constructor(
-    private fb: FormBuilder,
     private route: ActivatedRoute,
     private router: Router,
     private homeService: HomeService
   ) {
     this.homeService.loadUsers();
-    this.formData = this.fb.group({
-      firstName: [''],
-      lastName: [''],
-      age: [''],
-      phone: [''],
-      gender: [''],
-      email: ['']
-    });
   }
 
   ngOnInit(): void {
-    this.routeSub = this.route.params.subscribe(params => {
-      this.id = params["id"];
-    });
-
-    if (this.id) {
-      this.userSubscription = this.homeService.getUser(this.id).subscribe(user => {
-        this.user = user;
-
-        this.formData.setValue({
-          firstName: user.name.first,
-          lastName: user.name.last,
-          age: user.registered.age,
-          phone: user.phone,
-          gender: user.gender,
-          email: user.email
-        });
-
-      });
-    }
+    this.routeSub = this.route.params.subscribe(params => this.id.set(params["id"]));
+    this.userSubscription = this.homeService.getUser(this.id()).subscribe(user => this.formValue.set(user));
   }
 
   ngOnDestroy(): void {
@@ -69,16 +55,8 @@ export class EditItemPage implements OnInit, OnDestroy {
     this.userSubscription.unsubscribe();
   }
 
-  public onSubmit(): void {
-    this.user.name.first = this.formData.controls['firstName'].value;
-    this.user.name.last = this.formData.controls['lastName'].value;
-    this.user.registered.age = this.formData.controls['age'].value;
-    this.user.phone = this.formData.controls['phone'].value;
-    this.user.gender = this.formData.controls['gender'].value;
-    this.user.email = this.formData.controls['email'].value;
-
-    this.homeService.setUser(this.id, this.user);
+  onSubmit(): void {
+    this.homeService.setUser(this.id(), this.formValue());
     this.router.navigate(['/home']);
   }
-
 }

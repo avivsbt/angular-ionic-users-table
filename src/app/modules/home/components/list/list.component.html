@@ -1,5 +1,5 @@
 <ion-grid>
-  @if(onFilerUsers()?.length){
+  @if(users()?.length){
   <ion-row class="table-border-bottom light">
     <ion-col class="ion-text-bold"> First name </ion-col>
     <ion-col class="ion-text-bold"> Last name </ion-col>
@@ -7,23 +7,26 @@
     <ion-col size="2"> </ion-col>
   </ion-row>
 
-  <ion-row class="table-border-bottom" *ngFor="let item of onFilerUsers()">
-    <app-item class="line" [item]="item" [selected]="selected" (selectedItemId)="onSelected($event)"></app-item>
-    <app-expand *ngIf="selected === item.login.uuid" class="line" [item]="item"></app-expand>
+  <ion-row class="table-border-bottom">
+    @for (user of filteredUsers(); track user.login.uuid) {
+    <app-item class="line" [user]="user" [selected]="selected()" (selectedItemId)="selected.set($event)"></app-item>
+    <app-expand *ngIf="selected() === user.login.uuid" class="line" [user]="user"></app-expand>
+    }
   </ion-row>
+
   }
   @else {
-    @if(!onFilerUsers()) {
-    <div class="ion-text-center">
-      <ion-spinner></ion-spinner>
-    </div>
-    }@else {
-    <ion-row>
-      <ion-col>
-        <ion-text>Data not found</ion-text>
-      </ion-col>
-    </ion-row>
-    }
+  @if(!filteredUsers()) {
+  <div class="ion-text-center">
+    <ion-spinner></ion-spinner>
+  </div>
+  }@else {
+  <ion-row>
+    <ion-col>
+      <ion-text>Data not found</ion-text>
+    </ion-col>
+  </ion-row>
+  }
   }
 
 </ion-grid>

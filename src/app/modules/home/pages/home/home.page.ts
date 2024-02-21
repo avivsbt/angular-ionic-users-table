@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { HomeService } from '../../services/home.service';
 import { ListComponent } from '../../components/list/list.component';
 import { SearchComponent } from '../../../../shared/components/search/search.component';
@@ -6,20 +6,20 @@ import { SpeechComponent } from '../../../../shared/components/speech/speech.com
 import { IonicModule } from '@ionic/angular';
 
 @Component({
-    selector: 'app-home',
-    templateUrl: 'home.page.html',
-    styleUrls: ['home.page.scss'],
-    standalone: true,
-    imports: [
-        IonicModule,
-        SpeechComponent,
-        SearchComponent,
-        ListComponent,
-    ],
+  selector: 'app-home',
+  templateUrl: 'home.page.html',
+  styleUrls: ['home.page.scss'],
+  standalone: true,
+  imports: [
+    IonicModule,
+    SpeechComponent,
+    SearchComponent,
+    ListComponent,
+  ],
 })
 export class HomePage {
 
-  public query: string = "";
+  public query = signal<string>("");
 
   constructor(private homeService: HomeService) { }
 
@@ -28,6 +28,6 @@ export class HomePage {
   }
 
   public onSearch(query: string) {
-    this.query = query;
+    this.query.set(query);
   }
 }
