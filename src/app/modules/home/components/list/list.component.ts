@@ -30,6 +30,8 @@ export class ListComponent implements OnInit, OnDestroy {
     this.users()?.filter((user) => user.name.first.toLowerCase().indexOf(this.query()) > -1) || null
   );
 
+  public hasUsers = computed(() => this.filteredUsers()?.length);
+
   private usersSubscription: Subscription = Subscription.EMPTY;
 
   constructor(private homeService: HomeService) { }

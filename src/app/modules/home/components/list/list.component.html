@@ -1,5 +1,7 @@
 <ion-grid>
-  @if(filteredUsers()?.length){
+
+  @defer(when hasUsers()){
+  @if(hasUsers()){
   <ion-row class="table-border-bottom light">
     <ion-col class="ion-text-bold"> First name </ion-col>
     <ion-col class="ion-text-bold"> Last name </ion-col>
@@ -14,14 +16,7 @@
     <app-expand *ngIf="selected() === user.login.uuid" class="line" [user]="user"></app-expand>
     }
   </ion-row>
-
-  }
-  @else {
-  @if(!filteredUsers()) {
-  <div class="ion-text-center">
-    <ion-spinner></ion-spinner>
-  </div>
-  }@else {
+  }@else{
   <ion-row>
     <ion-col>
       <ion-text>Data not found</ion-text>
@@ -29,5 +24,14 @@
   </ion-row>
   }
   }
+  @placeholder {
+  <div class="ion-text-center">
+    <ion-spinner></ion-spinner>
+  </div>
+  }
+
+
+
+
 
 </ion-grid>
