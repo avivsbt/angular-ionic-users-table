@@ -1,6 +1,7 @@
 <ion-grid>
 
   @defer(when hasUsers()){
+
   @if(hasUsers()){
   <ion-row class="table-border-bottom light">
     <ion-col class="ion-text-bold"> First name </ion-col>
@@ -8,30 +9,23 @@
     <ion-col class="ion-text-bold"> Age </ion-col>
     <ion-col size="2"> </ion-col>
   </ion-row>
+  }
 
   <ion-row class="table-border-bottom">
     @for (user of filteredUsers(); track user.login.uuid) {
     <app-item #item class="line" [user]="user" [selected]="selected()"
       (selectedItemId)="selected.set($event)"></app-item>
     <app-expand *ngIf="selected() === user.login.uuid" class="line" [user]="user"></app-expand>
-    }
-  </ion-row>
-  }@else{
-  <ion-row>
+    }@empty {
     <ion-col>
       <ion-text>Data not found</ion-text>
     </ion-col>
+    }
   </ion-row>
-  }
   }
   @placeholder {
   <div class="ion-text-center">
     <ion-spinner></ion-spinner>
   </div>
   }
-
-
-
-
-
 </ion-grid>
